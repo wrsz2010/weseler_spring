@@ -1,5 +1,6 @@
 package com.javadub1.weseler_spring.user;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -11,6 +12,13 @@ import java.util.Optional;
 public class InMemoryUserRepository implements UserRepository{
 
     private List<User> users;
+    private RepositoryHelper repositoryHelper;
+
+    @Autowired
+    public InMemoryUserRepository(RepositoryHelper repositoryHelper) {
+        this.users = new ArrayList<>();
+        this.repositoryHelper = repositoryHelper;
+    }
 
     public InMemoryUserRepository() {
         this.users = new ArrayList<>();

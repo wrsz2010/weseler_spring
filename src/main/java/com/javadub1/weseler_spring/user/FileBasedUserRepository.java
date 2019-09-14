@@ -1,13 +1,23 @@
 package com.javadub1.weseler_spring.user;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@Component
+@Profile("!prod")
+@Repository
 public class FileBasedUserRepository implements UserRepository {
+
+    private RepositoryHelper repositoryHelper;
+
+    public FileBasedUserRepository(RepositoryHelper repositoryHelper) {
+        this.repositoryHelper = repositoryHelper;
+    }
+
     @Override
     public Optional<User> findById(Long id) {
         return Optional.empty();
