@@ -1,0 +1,14 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title> All users</title>
+</head>
+<body>
+
+<ul>
+    <li th:each="user : ${users}">
+        <a href="/users/1"
+           th:href="'/users/' + ${user.id}"
+           th:text="${user.fullName}"/> </li>
+</ul>
+</body>
+</html>

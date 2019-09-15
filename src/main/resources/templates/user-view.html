@@ -1,0 +1,13 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>USERS:</title>
+</head>
+<body>
+<div>
+    <h4 th:text="${user.firstName} + ' ' + ${user.lastName}">Jan Nowak</h4>
+    <h6 th:text="${user.gender}">Male</h6>
+    <h3 th:text="${user.fullName}"></h3>
+</div>
+</body>
+
+</html>
