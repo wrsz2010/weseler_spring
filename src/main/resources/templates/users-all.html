@@ -3,12 +3,25 @@
     <title> All users</title>
 </head>
 <body>
-
 <ul>
     <li th:each="user : ${users}">
         <a href="/users/1"
            th:href="'/users/' + ${user.id}"
-           th:text="${user.fullName}"/> </li>
+           th:text="${user.fullName}"> Szymon
+        </a>
+    </li>
 </ul>
+<form action="/users" method="post">
+    First Name: <input type="text" name="firstName">
+    <br>
+    Last Name : <input type="text" name="lastName">
+    <br>
+    Gender    : <select name="gender" id="gender">
+                    <option value="MALE">Male</option>
+                    <option value="FEMALE">Female</option>
+                </select>
+    <br>
+    <input type="submit" value="Submit">
+</form>
 </body>
 </html>
