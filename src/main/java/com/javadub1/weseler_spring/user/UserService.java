@@ -2,7 +2,6 @@ package com.javadub1.weseler_spring.user;
 
 import com.javadub1.weseler_spring.user.exceptions.InvalidParameterException;
 import com.javadub1.weseler_spring.user.exceptions.UserNotFoundException;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -10,17 +9,19 @@ import java.util.List;
 @Component
 public class UserService {
     private UserRepository userRepository;
+    private JpaUserRepository jpaUserRepository;
 
-    public UserService(@Qualifier("inMemoryUserRepository") UserRepository userRepository) {
+    public UserService(UserRepository userRepository, JpaUserRepository jpaUserRepository) {
         this.userRepository = userRepository;
+        this.jpaUserRepository = jpaUserRepository;
     }
 
     public User findById(Long id) {
-        return userRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
+        return jpaUserRepository.findById(id).orElseThrow(() -> new UserNotFoundException(id));
     }
 
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public Iterable<User> findAll() {
+        return jpaUserRepository.findAll();
     }
 
     public List<User> findByGender(String gender) {
@@ -33,6 +34,6 @@ public class UserService {
     }
 
     public void saveUser(User user) {
-        userRepository.save(user);
+        jpaUserRepository.save(user);
     }
 }
