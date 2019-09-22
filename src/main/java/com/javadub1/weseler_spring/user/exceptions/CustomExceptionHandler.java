@@ -1,5 +1,6 @@
 package com.javadub1.weseler_spring.user.exceptions;
 
+import com.javadub1.weseler_spring.todo.TodoNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,6 +13,14 @@ public class CustomExceptionHandler {
     @ExceptionHandler(UserNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ModelAndView handleUserNotFound(UserNotFoundException e) {
+        ModelAndView modelAndView = new ModelAndView("errors/not-found");
+        modelAndView.addObject("message", e.getMessage());
+        return modelAndView;
+    }
+
+    @ExceptionHandler(TodoNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ModelAndView handleTodoNotFound(TodoNotFoundException e) {
         ModelAndView modelAndView = new ModelAndView("errors/not-found");
         modelAndView.addObject("message", e.getMessage());
         return modelAndView;

@@ -1,5 +1,7 @@
 package com.javadub1.weseler_spring.user;
 
+import com.javadub1.weseler_spring.user.entities.Gender;
+import com.javadub1.weseler_spring.user.entities.User;
 import com.javadub1.weseler_spring.user.exceptions.InvalidParameterException;
 import com.javadub1.weseler_spring.user.exceptions.UserNotFoundException;
 import org.springframework.stereotype.Component;

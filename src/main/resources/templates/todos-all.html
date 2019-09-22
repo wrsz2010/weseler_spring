@@ -1,0 +1,56 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title> Todos: </title>
+
+    <style>
+        .status-button {
+            border: 1px solid black;
+            padding: 5px;
+        }
+        .new {
+            background-color: lightblue;
+        }
+        .in_progress {
+            background-color: pink;
+        }
+        .done {
+            background-color: aqua;
+        }
+        .all {
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <a class="status-button new" href="/todos?st=NEW">NEW</a>
+    <a class="status-button in_progress" href="/todos?st=IN_PROGRESS">IN_PROGRESS</a>
+    <a class="status-button done" href="/todos?st=DONE">DONE</a>
+    <a class="status-button all" href="/todos">ALL</a>
+
+</div>
+<ul>
+    <li th:each="todo : ${todos}">
+        <a href="/todos/1"
+           th:href="'/todos/' + ${todo.id}"
+           th:text="${todo.name}"> NEW
+        </a>
+    </li>
+</ul>
+<form action="/todos" method="post">
+    Name: <input type="text" name="name">
+    <br>
+    Description : <input type="text" name="description">
+    <br>
+    Status    : <select name="status" id="status">
+    <option value="NEW">NEW</option>
+    <option value="IN_PROGRESS">IN_PROGRESS</option>
+    <option value="DONE">DONE</option>
+
+</select>
+    <br>
+    <input type="submit" value="Submit">
+</form>
+</body>
+</html>

@@ -1,10 +1,10 @@
 package com.javadub1.weseler_spring.todo;
 
-import org.springframework.stereotype.Service;
-
+import com.javadub1.weseler_spring.user.exceptions.InvalidParameterException;
+import org.springframework.stereotype.Component;
 import java.util.List;
 
-@Service
+@Component
 public class TodoService {
 
     private TodoRepository todoRepository;
@@ -13,18 +13,23 @@ public class TodoService {
         this.todoRepository = todoRepository;
     }
 
-    public Todo findById(Long id) {
-        if(id == null || id <= 0){
-            throw new IllegalArgumentException(id + "is invalid");
+    public List<Todo> findByStatus(String status) {
+        try {
+            TodoStatus enumStatus = TodoStatus.valueOf(status);
+            return todoRepository.findByStatus(enumStatus);
+        } catch (IllegalArgumentException e) {
+            throw new InvalidParameterException("status");
         }
-        return todoRepository.findById(id).orElseThrow(() -> new TodoNotFoundException(id));
     }
 
-    public List<Todo> findAll() {
+    public Iterable<Todo> findAll() {
         return todoRepository.findAll();
     }
 
-    public List<Todo> findByStatus(TodoStatus status){
-        return todoRepository.findByStatus(status);
+    public Todo findById(Long id) {
+        return todoRepository.findById(id).orElseThrow(() -> new TodoNotFoundException(id));
+    }
+    public void saveTodo(Todo todo) {
+        todoRepository.save(todo);
     }
 }

@@ -13,6 +13,9 @@
         .female {
             background-color: pink;
         }
+        .all-button {
+            background-color: brown;
+        }
     </style>
 </head>
 <body>
@@ -20,6 +23,7 @@
 <div>
     <a class="gender-button male" href="/users?g=MALE">MALE</a>
     <a class="gender-button female" href="/users?g=FEMALE">FEMALE</a>
+    <a class="all-button all" href="/users">ALL</a>
 </div>
 <ul>
     <li th:each="user : ${users}">

@@ -1,11 +1,10 @@
 package com.javadub1.weseler_spring.todo;
 
+import org.springframework.data.repository.CrudRepository;
+
 import java.util.List;
-import java.util.Optional;
 
-public interface TodoRepository {
+public interface TodoRepository extends CrudRepository<Todo, Long> {
 
-    List<Todo> findAll();
-    Optional<Todo> findById(Long id);
     List<Todo> findByStatus(TodoStatus status);
 }

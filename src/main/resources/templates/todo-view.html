@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <title>TODOS:</title>
+    <style>
+        .back-button {
+            border: 1px solid black;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <a class="back-button Back" href="/todos">Back</a>
+</div>
+<br/>
+<br/>
+<div>
+    <table width="100%" border="1">
+        <tr>
+            <th><h4 th:text="${todo.name}">...</h4></th>
+            <th> <h4 th:text="${todo.description}"></h4></th>
+            <th><h4 th:text="${todo.status}">...</h4></th>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
